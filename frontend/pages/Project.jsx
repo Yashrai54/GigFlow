@@ -19,7 +19,7 @@ const Project = () => {
 
     useEffect(() => {
         const fetchProjects = async () => {
-            const { data } = await axios.get("http://localhost:4000/api/project/all", { withCredentials: true })
+            const { data } = await axios.get("https://quickgig-jous.onrender.com/api/project/all", { withCredentials: true })
             setProjects(data.projects)
         }
         fetchProjects()
@@ -41,7 +41,7 @@ const Project = () => {
             const { lat, lng } = await getLocation()
             console.log(lat, lng)
             try {
-                const res = await axios.post("http://localhost:4000/api/project/add", { title, description, lat, lng }, { withCredentials: true })
+                const res = await axios.post("https://quickgig-jous.onrender.com/api/project/add", { title, description, lat, lng }, { withCredentials: true })
                 setMsg(res.data.message)
                 setErr("")
                 setProjects(p => [...p, res.data.createdProject])
@@ -59,7 +59,7 @@ const Project = () => {
 
     const handleDelete = async (i) => {
         try {
-            const res = await axios.delete(`http://localhost:4000/api/project/delete/${i}`, { withCredentials: true })
+            const res = await axios.delete(`https://quickgig-jous.onrender.com/api/project/delete/${i}`, { withCredentials: true })
             setMsg(res.data.message)
             setErr("")
             setProjects(p => p.map(x => x._id === i ? { ...x, title, description } : x))
@@ -72,7 +72,7 @@ const Project = () => {
 
     const handleUpdate = async (i) => {
         try {
-            const res = await axios.put(`http://localhost:4000/api/project/update/${i}`, { updatedTitle, updatedDescription },{withCredentials:true})
+            const res = await axios.put(`https://quickgig-jous.onrender.com/api/project/update/${i}`, { updatedTitle, updatedDescription },{withCredentials:true})
             setMsg(res.data.message)
             setErr("")
             setProjects(p=>p.map(x=>x._id===i?res.data.updatedProject:x))
