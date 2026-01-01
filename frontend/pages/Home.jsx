@@ -39,7 +39,7 @@ const Home = () => {
     <div className='min-h-screen bg-[#F2FAFA]'>
       <Navbar />
 
-      <main className='m-5 flex flex-col lg:flex-row justify-center items-center gap-[20px] lg:gap-[40px] px-4'>
+<main className='m-5 flex flex-col lg:flex-row justify-center items-center gap-[20px] lg:gap-[40px] px-4 w-full text-center lg:text-left'>
         <motion.div initial={{ opacity: 0, x: 0 }} animate={{ opacity: 1, x: 30 }}
           transition={{ duration: 0.8, ease: "easeIn" }}
           className='w-full max-w-[500px] mt-10'> 
