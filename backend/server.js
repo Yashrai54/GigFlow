@@ -24,7 +24,7 @@ dotenv.config()
 
 ConnectDb().then(console.log("DB Connected"))
 
-app.use(cors({origin:"https://quick-gig-eight.vercel.app/",credentials:true}))
+app.use(cors({origin:"https://quick-gig-eight.vercel.app",credentials:true}))
 app.use(express.json())
 app.use(cookieParser())
 app.use("/api/auth",authRouter)
