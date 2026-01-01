@@ -51,22 +51,15 @@ const Home = () => {
             Browse local gigs, connect with nearby clients, and get paid for what you do best
             — all in your area.
           </p>
-        <div className='flex flex-col sm:flex-row items-center justify-center mt-10 gap-3 sm:gap-0'>
+        <div className='flex flex-col sm:flex-row items-center justify-center mt-5 md:mt-10 gap-3 sm:gap-0'>
           <button className='bg-sky-500 text-white font-semibold px-6 sm:px-10 py-3 sm:py-4
              rounded-md cursor-pointer w-full sm:w-auto
             ' onClick={()=>handleNearbyProjects()}>
               Check for Projects
             </button>
-          <input type="search" name="job-search" id="job-search"
-            placeholder='Search freelance work' className='sm:ml-5 px-4 py-3 sm:py-4 border-2 border-sky-500 rounded-md outline-none
-             transition-all duration-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 w-full sm:w-auto
-             '  />
-          <span className="items-center sm:ml-3">
-            <CiSearch size={30} className='cursor-pointer' onClick={()=>getLocationAndSearch()} />
-          </span>
         </div>
         </motion.div>
-        <div className='w-full max-w-[500px] h-auto mt-10 lg:mt-0'>
+        <div className='w-full max-w-[500px] h-auto mt-5 md:mt-10 lg:mt-0'>
           <img src={HomePageBg} alt="" className='w-full h-auto' />
         </div>
       </main>
