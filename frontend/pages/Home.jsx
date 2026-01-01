@@ -25,7 +25,7 @@ const Home = () => {
       try{
         console.log(lat)
         console.log(lng)
-          const res = await axios.get(`http://localhost:4000/api/project/near/${lat}/${lng}`,{withCredentials:true})
+          const res = await axios.get(`https://quickgig-jous.onrender.com/api/project/near/${lat}/${lng}`,{withCredentials:true})
           console.log(res)
           setNearbyProjects(res.data.foundProjects)
           setMsg(res.data.message)
