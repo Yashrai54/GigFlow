@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     async function getAllProjects() {
-      await axios.get("https://gigflow-capn.onrender.com///api/project/all", {
+      await axios.get("https://gigflow-capn.onrender.com/api/project/all", {
         withCredentials: true
       }).then(res => {
         setAllProjects(res.data.projects || [])
