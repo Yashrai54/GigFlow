@@ -20,7 +20,7 @@ const Project = () => {
 
     useEffect(() => {
         const fetchProjects = async () => {
-            const { data } = await axios.get("http://localhost:4000/api/project/all", { withCredentials: true })
+            const { data } = await axios.get("https://gigflow-capn.onrender.com/api/project/all", { withCredentials: true })
             setProjects(data.projects)
         }
         fetchProjects()
@@ -41,7 +41,7 @@ const Project = () => {
             console.log({ title, description })
 
             try {
-                const res = await axios.post("http://localhost:4000/api/project/add", { title, description, budget }, { withCredentials: true })
+                const res = await axios.post("https://gigflow-capn.onrender.com/api/project/add", { title, description, budget }, { withCredentials: true })
                 setMsg(res.data.message)
                 setErr("")
                 setProjects(p => [...p, res.data.createdProject])
@@ -60,7 +60,7 @@ const Project = () => {
 
     const handleDelete = async (i) => {
         try {
-            const res = await axios.delete(`http://localhost:4000/api/project/delete/${i}`, { withCredentials: true })
+            const res = await axios.delete(`https://gigflow-capn.onrender.com/api/project/delete/${i}`, { withCredentials: true })
             setMsg(res.data.message)
             setErr("")
             setProjects(p => p.map(x => x._id === i ? { ...x, title, description } : x))
@@ -73,7 +73,7 @@ const Project = () => {
 
     const handleUpdate = async (i) => {
         try {
-            const res = await axios.put(`http://localhost:4000/api/project/update/${i}`, { updatedTitle, updatedDescription }, { withCredentials: true })
+            const res = await axios.put(`https://gigflow-capn.onrender.com/api/project/update/${i}`, { updatedTitle, updatedDescription }, { withCredentials: true })
             setMsg(res.data.message)
             setErr("")
             setProjects(p => p.map(x => x._id === i ? res.data.updatedProject : x))
