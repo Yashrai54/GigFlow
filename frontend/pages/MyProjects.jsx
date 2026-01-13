@@ -13,7 +13,7 @@ const MyProjects = () => {
     useEffect(() => {
         async function fetchMyProjects() {
             try {
-                const res = await axios.get("http://localhost:4000/api/project/myprojects", { withCredentials: true })
+                const res = await axios.get("https://gigflow-capn.onrender.com/api/project/myprojects", { withCredentials: true })
                 console.log(res.data)
 
                 setMyProjects(res.data.projects)
@@ -30,7 +30,7 @@ const MyProjects = () => {
 
     async function getBids(projectId) {
         try{
-            const res = await axios.get("http://localhost:4000/api/bid/getbids",{
+            const res = await axios.get("https://gigflow-capn.onrender.com/api/bid/getbids",{
                 params:{projectId},
                 withCredentials:true
             })
