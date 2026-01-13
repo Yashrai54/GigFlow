@@ -15,15 +15,15 @@ const MyBids = () => {
         try {
             setIsHiring(true)
             
-            await axios.patch(`http://localhost:4000/api/project/${projectId}/status`, {
+            await axios.patch(`https://gigflow-capn.onrender.com/api/project/${projectId}/status`, {
                 status: 'Assigned'
             }, { withCredentials: true })
 
-            await axios.patch(`http://localhost:4000/api/bid/${bidId}/status`, {
+            await axios.patch(`https://gigflow-capn.onrender.com/api/bid/${bidId}/status`, {
                 status: 'hired'
             }, { withCredentials: true })
 
-            await axios.patch(`http://localhost:4000/api/bid/reject-others`, {
+            await axios.patch(`https://gigflow-capn.onrender.com/api/bid/reject-others`, {
                 projectId,
                 acceptedBidId: bidId
             }, { withCredentials: true })
