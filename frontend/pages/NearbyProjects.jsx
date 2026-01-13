@@ -62,7 +62,7 @@ const NearbyProjects = () => {
     try {
       setIsSubmitting(true)
       
-      const res = await axios.post("http://localhost:4000/api/bid/create",
+      const res = await axios.post("https://gigflow-capn.onrender.com/api/bid/create",
         {
           message,
           budget: Number(budget),
