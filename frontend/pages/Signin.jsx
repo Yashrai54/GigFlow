@@ -14,7 +14,7 @@ const Signin = () => {
 
     const handleSubmit=async()=>{
         try{
-            const res= await axios.post("http://localhost:4000/api/auth/signin",{email,password},{withCredentials:true})
+            const res= await axios.post("https://gigflow-capn.onrender.com/api/auth/signin",{email,password},{withCredentials:true})
             setMsg(res.data.message)
             setErr("")
             navigate("/")
