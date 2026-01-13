@@ -14,19 +14,16 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-   location:{
-    type:{
-        type:String,
-        enum:["Point"],
-        required:true,
-    },
-    coordinates:{
-        type:[Number],
+    budget:{
+        type:Number,
         required:true
+    },
+    status:{
+        type: String,
+        enum:["Open","Assigned"],
+        default:"Open"
     }
-   }
 })
-ProjectSchema.index({location:"2dsphere"})
 
 const ProjectModel = await mongoose.model("Project",ProjectSchema)
 

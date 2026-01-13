@@ -14,12 +14,13 @@ const Project = () => {
     const [err, setErr] = useState("")
     const [projects, setProjects] = useState([])
     const [update, setUpdate] = useState(false)
-    const [updatedTitle,setUpdatedTitle] = useState("")
-    const [updatedDescription,setUpdatedDescription] = useState("")
+    const [updatedTitle, setUpdatedTitle] = useState("")
+    const [updatedDescription, setUpdatedDescription] = useState("")
+    const [budget, setBudget] = useState(0)
 
     useEffect(() => {
         const fetchProjects = async () => {
-            const { data } = await axios.get("https://quickgig-jous.onrender.com/api/project/all", { withCredentials: true })
+            const { data } = await axios.get("http://localhost:4000/api/project/all", { withCredentials: true })
             setProjects(data.projects)
         }
         fetchProjects()
@@ -36,12 +37,11 @@ const Project = () => {
     }
 
     const handleSubmit = async () => {
-        if (title && description) {
+        if (title && description && budget) {
             console.log({ title, description })
-            const { lat, lng } = await getLocation()
-            console.log(lat, lng)
+
             try {
-                const res = await axios.post("https://quickgig-jous.onrender.com/api/project/add", { title, description, lat, lng }, { withCredentials: true })
+                const res = await axios.post("http://localhost:4000/api/project/add", { title, description, budget }, { withCredentials: true })
                 setMsg(res.data.message)
                 setErr("")
                 setProjects(p => [...p, res.data.createdProject])
@@ -52,6 +52,7 @@ const Project = () => {
             }
             setTitle('')
             setDescription('')
+            setBudget(0)
         } else {
             alert('Please fill in all fields')
         }
@@ -59,7 +60,7 @@ const Project = () => {
 
     const handleDelete = async (i) => {
         try {
-            const res = await axios.delete(`https://quickgig-jous.onrender.com/api/project/delete/${i}`, { withCredentials: true })
+            const res = await axios.delete(`http://localhost:4000/api/project/delete/${i}`, { withCredentials: true })
             setMsg(res.data.message)
             setErr("")
             setProjects(p => p.map(x => x._id === i ? { ...x, title, description } : x))
@@ -72,10 +73,10 @@ const Project = () => {
 
     const handleUpdate = async (i) => {
         try {
-            const res = await axios.put(`https://quickgig-jous.onrender.com/api/project/update/${i}`, { updatedTitle, updatedDescription },{withCredentials:true})
+            const res = await axios.put(`http://localhost:4000/api/project/update/${i}`, { updatedTitle, updatedDescription }, { withCredentials: true })
             setMsg(res.data.message)
             setErr("")
-            setProjects(p=>p.map(x=>x._id===i?res.data.updatedProject:x))
+            setProjects(p => p.map(x => x._id === i ? res.data.updatedProject : x))
         }
         catch (error) {
             setErr(err.response?.data?.message || "Something broke")
@@ -100,14 +101,14 @@ const Project = () => {
                                             <h3 className="font-semibold text-lg text-gray-800 mb-2">{p.title}</h3>
                                             <div className=' flex gap-10 justify-center'>
                                                 <div>
-                                                    <CiEdit size={20} className='m-1 cursor-pointer' onClick={()=>setUpdate(true)} />
-                                                    
-                                                    {update? <button
+                                                    <CiEdit size={20} className='m-1 cursor-pointer' onClick={() => setUpdate(true)} />
+
+                                                    {update ? <button
                                                         onClick={() => handleUpdate(p._id)}
                                                         className=" m-auto bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-sky-600 transition-colors"
                                                     >
                                                         Save Project
-                                                    </button>:<p className='' >Edit</p>}
+                                                    </button> : <p className='' >Edit</p>}
                                                 </div>
                                                 <div>
                                                     <MdDelete size={20} className='m-1 cursor-pointer' onClick={() => handleDelete(p._id)} />
@@ -180,7 +181,7 @@ const Project = () => {
                                 </div>
                             </div>
                         </div>
-                    </div> : <motion.div className=" lg:w-1/3" initial={{opacity:0,y:0}} animate={{opacity:1,y:5}} transition={{duration:0.6,ease:"easeIn"}}>
+                    </div> : <motion.div className=" lg:w-1/3" initial={{ opacity: 0, y: 0 }} animate={{ opacity: 1, y: 5 }} transition={{ duration: 0.6, ease: "easeIn" }}>
                         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                             <div className="bg-sky-500 text-white p-6">
                                 <h1 className="text-3xl font-bold">Create New Project</h1>
@@ -215,6 +216,19 @@ const Project = () => {
                                         placeholder="Describe your project"
                                     />
                                 </div>
+                                <div className="mb-6">
+                                    <label className="block text-gray-700 font-semibold mb-2">
+                                        Project Budget
+                                    </label>
+                                    <input
+                                        type="number"
+                                        value={budget}
+                                        onChange={(e) => setBudget(e.target.value)}
+                                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-sky-500"
+                                        placeholder="Enter budget"
+                                    />
+                                </div>
+
 
                                 {(msg || err) && (
                                     <div className="mb-4">

@@ -1,15 +1,16 @@
 import { Router } from "express";
-import { addProject, deleteProject, getProjects, updateProject } from "../controllers/ProjectController.js";
-import nearbyProjects from "../controllers/GeoController.js";
+import { addProject, deleteProject, getAllProjects, getProjects, updateProject, updateProjectStatus } from "../controllers/ProjectController.js";
 
 const projectRouter = Router()
 
 projectRouter.post("/add",addProject)
-projectRouter.get("/all",getProjects)
+projectRouter.get("/all",getAllProjects)
 projectRouter.put("/update/:projectId",updateProject)
 projectRouter.delete("/delete/:projectId",deleteProject)
+projectRouter.get("/myprojects",getProjects)
+projectRouter.patch('/:projectId/status', updateProjectStatus)
 
-projectRouter.get("/near/:lat/:lng",nearbyProjects)
+
 
 
 export default projectRouter

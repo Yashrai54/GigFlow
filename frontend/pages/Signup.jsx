@@ -15,7 +15,7 @@ const Signup = () => {
 
     const handleSubmit = async () => {
         try {
-            const res = await axios.post("https://quickgig-jous.onrender.com/api/auth/signup", { username, email, password })
+            const res = await axios.post("http://localhost:4000/api/auth/signup", { username, email, password })
             setMsg(res.data.message)
             setErr("")
             navigate("/signin")
@@ -35,14 +35,14 @@ const Signup = () => {
             >
                 <img src={Logo} alt="" className=' w-[150px] h-[150px]' />
                 <h1 className='ml-10 mb-5 text-white font-bold text-4xl'>Sign Up To</h1>
-                <h2 className='ml-10 mb-5 text-white font-bold text-2xl'>QuickGig</h2>
-                <p className='ml-10 text-white font-bold text-xs w-[500px]'>QuickGig is your go-to local freelancing hub.
-                    Connect with nearby clients, showcase your skills, and get work done in your community—fast, simple, and local.</p>
+                <h2 className='ml-10 mb-5 text-white font-bold text-2xl'>GigFlow</h2>
+                <p className='ml-10 text-white font-bold text-xs w-[500px]'>GigFlow is your go-to  freelancing hub.
+                    Connect with  clients, showcase your skills, and get work done in your community—fast and simple.</p>
                 <img src={bg} alt="" className=' w-[385px] h-[385px]' />
             </motion.div>
             <div className=' w-full max-w-[500px] lg:w-[500px] h-auto lg:h-[600px] bg-white mr-0 lg:mr-10 relative top-0 lg:top-1/8 rounded-md p-4 lg:p-0'>
                 <h1 className=' m-5 text-xl font-semibold'>Welcome to
-                    <span className='ml-2 text-sky-500'>QuickGig</span></h1>
+                    <span className='ml-2 text-sky-500'>GigFlow</span></h1>
                 <h1 className=' text-black font-bold text-3xl m-5'>Sign Up</h1>
                 <p className=' ml-5 text-base font-semibold'>Enter Your username</p>
                 <input type="text" name="username" id="username" value={username}

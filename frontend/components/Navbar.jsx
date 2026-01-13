@@ -27,6 +27,7 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <ul className='hidden md:flex gap-[40px]'>
           <li className='hover:text-sky-500 cursor-pointer'><Link to="/">Home</Link></li>
+          <li className='hover:text-sky-500 cursor-pointer'><Link to="/myprojects">My Projects</Link></li>
           <li className='hover:text-sky-500 cursor-pointer'><Link to="/signin">Log In</Link></li>
           <li className='hover:text-sky-500 cursor-pointer'><Link to="/signup">Sign Up</Link></li>
         </ul>
@@ -80,6 +81,12 @@ const Navbar = () => {
               onClick={() => handleNavigation("/")}
             >
               Home
+            </li>
+            <li 
+             className='text-lg hover:text-sky-500 cursor-pointer border-b pb-2' 
+              onClick={() => handleNavigation("/myprojects")}
+            >
+               My Projects
             </li>
             <li 
               className='text-lg hover:text-sky-500 cursor-pointer border-b pb-2' 
